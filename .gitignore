@@ -5,3 +5,6 @@ __pycache__/
 *.db
 .DS_Store
 .pytest_cache/
+virtualenv
+%USERPROFILE%
+install-pyenv-win

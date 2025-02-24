@@ -244,7 +244,16 @@ function App() {
     setCurrentPage(1);
     setIsSearchMode(false);
   };
-
+  console.log(
+    movies.filter((el) =>
+      el.genre_ids.some((genre) => genre == Number(selectedGenre.id))
+    ),
+    Number(selectedGenre.id),
+    "AA",
+    movies.map((el) =>
+      el.genre_ids.some((genre) => genre == Number(selectedGenre))
+    )
+  );
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
@@ -277,13 +286,17 @@ function App() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {movies.filtermap((movie) => (
-          <MovieCard
-            key={movie.tmdb_id}
-            movie={movie}
-            onClick={() => handleMovieClick(movie.tmdb_id)}
-          />
-        ))}
+        {movies
+          .filter((el) =>
+            el.genre_ids.some((genre) => genre == Number(selectedGenre))
+          )
+          .map((movie) => (
+            <MovieCard
+              key={movie.tmdb_id}
+              movie={movie}
+              onClick={() => handleMovieClick(movie.tmdb_id)}
+            />
+          ))}
       </div>
 
       <RecommendationsModal
