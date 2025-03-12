@@ -83,7 +83,7 @@ python app.py
 Se encuentra en la raíz del proyecto.
 No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
 ```
-📂 Estructura del proyecto
+## 📂 Estructura del proyecto
 
 movie_recommender/
 │
@@ -97,10 +97,12 @@ movie_recommender/
 └── .env                  → Configuración con API Key
 
 
-📫 Contacto
-💼 LinkedIn - Yamila De Olivera
-🌐 Portafolio Personal
-📧 Email: yami40521@gmail.com
+## 📫 Contacto
+
+- 💼 [LinkedIn - Yamila De Olivera](https://www.linkedin.com/in/yamila-de-olivera/)
+- 🌐 [Portafolio Personal](https://master--portafolio-yamila-de-olivera.netlify.app/)
+- 📧 Email: yami40521@gmail.com
+
 
 ⭐ ¿Te gustó este proyecto?
 Si querés apoyar o dar visibilidad al trabajo:
