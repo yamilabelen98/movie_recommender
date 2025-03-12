@@ -90,7 +90,7 @@ No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
 - 📧 Email: yami40521@gmail.com
 
 
-##⭐ ¿Te gustó este proyecto?
+## ⭐ ¿Te gustó este proyecto?
 Si querés apoyar o dar visibilidad al trabajo:
 
 -⭐ Dale una estrella al repositorio
