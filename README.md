@@ -12,7 +12,6 @@ Permite buscar películas, filtrarlas por género, ordenarlas por popularidad o 
 ✅ Ordenamiento por popularidad, puntuación o fecha  
 ✅ Modal con detalle de cada película  
 ✅ Recomendaciones relacionadas  
-✅ Modo claro / oscuro  
 ✅ Películas destacadas  
 ✅ Diseño responsive con estilo pastel moderno
 
