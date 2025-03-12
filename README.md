@@ -104,8 +104,8 @@ movie_recommender/
 - 📧 Email: yami40521@gmail.com
 
 
-⭐ ¿Te gustó este proyecto?
+##⭐ ¿Te gustó este proyecto?
 Si querés apoyar o dar visibilidad al trabajo:
 
-⭐ Dale una estrella al repositorio
-📤 Compartilo con otros desarrolladores
+-⭐ Dale una estrella al repositorio
+-📤 Compartilo con otros desarrolladores
