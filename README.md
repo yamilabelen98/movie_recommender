@@ -91,7 +91,7 @@ No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
 
 
 ## ⭐ ¿Te gustó este proyecto?
-Si querés apoyar o dar visibilidad al trabajo:
+## Si querés apoyar o dar visibilidad al trabajo:
 
 -⭐ Dale una estrella al repositorio
 -📤 Compartilo con otros desarrolladores
