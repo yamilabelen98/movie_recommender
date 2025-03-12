@@ -48,41 +48,42 @@ Permite buscar películas, filtrarlas por género, ordenarlas por popularidad o 
 
 ### 1. Cloná el repositorio
 
-```bash```
+```bash
 git clone https://github.com/yamilabelen98/movie_recommender.git
 cd movie_recommender
-
+```
 ### 2. Activá un entorno virtual
 
-```bash```
+```bash
 python -m venv venv
 # Activar entorno
 # En Windows:
 venv\Scripts\activate
 # En Linux/macOS:
 source venv/bin/activate
-
+```
 ### 3. Instalá las dependencias
 
-```bash```
+```bash
 pip install -r requirements.txt
-
+```
 ### 4. Configurá tu archivo .env
 
-```bash```
+```bash
 TMDB_API_KEY=tu_api_key_aqui
+```
 👉 Podés conseguir tu API gratuita desde: https://www.themoviedb.org/settings/api
-
+```
 ### 5. Ejecutá el servidor Python
 
-```bash```
+```bash
 python app.py
-
+```
 ### 6. Abrí el archivo index.html en tu navegador
-
+```bash
 Se encuentra en la raíz del proyecto.
 No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
-
+```
 📂 Estructura del proyecto
 
 movie_recommender/
