@@ -29,17 +29,17 @@ Permite buscar películas, filtrarlas por género, ordenarlas por popularidad o 
 
 ## 🖼 Capturas del proyecto
 
-| Vista Principal                                                     | Detalle de Película                                    |
-| ------------------------------------------------------------------- | ------------------------------------------------------ |
-| ![Vista Principal](./screenshots/Recomendador%20de%20Peliculas.png) | ![Detalle](./screenshots/Detalle%20de%20la%20Card.png) |
+| Vista Principal                                                       | Detalle de Película                                      |
+| --------------------------------------------------------------------- | -------------------------------------------------------- |
+| ![Vista Principal](./static/images/Recomendador%20de%20Peliculas.png) | ![Detalle](./static/images/Detalle%20de%20la%20Card.png) |
 
-| Filtros y Ordenamiento                | Recomendaciones                                             |
-| ------------------------------------- | ----------------------------------------------------------- |
-| ![Filtros](./screenshots/Filtros.png) | ![Recomendaciones](./screenshots/Peliculas%20similares.png) |
+| Filtros y Ordenamiento                  | Recomendaciones                                               |
+| --------------------------------------- | ------------------------------------------------------------- |
+| ![Filtros](./static/images/Filtros.png) | ![Recomendaciones](./static/images/Peliculas%20similares.png) |
 
-| Buscador y Volver                                                 | Footer + Sobre la App                                               |
-| ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-| ![Buscador](./screenshots/Buscador%20y%20boton%20de%20volver.png) | ![Sobre la App](./screenshots/Sobre%20la%20pagina%20y%20Footer.png) |
+| Buscador y Volver                                                   | Footer + Sobre la App                                                 |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| ![Buscador](./static/images/Buscador%20y%20boton%20de%20volver.png) | ![Sobre la App](./static/images/Sobre%20la%20pagina%20y%20Footer.png) |
 
 ---
 
