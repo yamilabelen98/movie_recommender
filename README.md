@@ -83,20 +83,6 @@ python app.py
 Se encuentra en la raíz del proyecto.
 No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
 ```
-## 📂 Estructura del proyecto
-
-movie_recommender/
-│
-├── api/                  → Endpoints backend
-├── static/
-│   └── js/components/    → Componentes React (SearchBar, MovieCard, etc.)
-├── templates/            → HTML base (si usás Jinja)
-├── app.py                → Backend principal
-├── requirements.txt      → Dependencias Python
-├── index.html            → Página principal del frontend
-└── .env                  → Configuración con API Key
-
-
 ## 📫 Contacto
 
 - 💼 [LinkedIn - Yamila De Olivera](https://www.linkedin.com/in/yamila-de-olivera/)
