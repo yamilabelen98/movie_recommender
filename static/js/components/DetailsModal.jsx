@@ -12,7 +12,7 @@ const DetailsModal = ({ movie, isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg overflow-hidden max-w-3xl w-full"
+        className="bg-white rounded-3xl overflow-hidden max-w-3xl w-full"
         onClick={handleModalClick}
       >
         <div className="relative">

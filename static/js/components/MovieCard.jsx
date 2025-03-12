@@ -18,7 +18,7 @@ const MovieCard = ({ movie, onClick }) => {
 
   return (
     <div
-      className="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer flex"
+      className="bg-white rounded-3xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer flex"
       onClick={onClick}
     >
       {/* Imagen */}
@@ -90,9 +90,9 @@ const MovieCard = ({ movie, onClick }) => {
             {movie.overview && movie.overview.length > 100 && (
               <button
                 onClick={handleShowDetails}
-                className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
+                className="mt-4 bg-pink-500 hover:bg-pink-600 text-white text-sm font-medium py-2 px-4 rounded-full transition duration-200 self-start"
               >
-                Ver más
+                Ver más detalles
               </button>
             )}
           </div>

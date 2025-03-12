@@ -1,192 +1,24 @@
-// function App() {
-//   const [movies, setMovies] = React.useState([]);
-//   const [searchQuery, setSearchQuery] = React.useState("");
-//   const [isLoading, setIsLoading] = React.useState(false);
-//   const [showRecommendations, setShowRecommendations] = React.useState(false);
-//   const [recommendations, setRecommendations] = React.useState([]);
-//   const [isSearchMode, setIsSearchMode] = React.useState(false);
-//   // Nuevos estados para filtros y paginación
-//   const [currentPage, setCurrentPage] = React.useState(1);
-//   const [totalPages, setTotalPages] = React.useState(1);
-//   const [selectedGenre, setSelectedGenre] = React.useState("");
-//   const [sortBy, setSortBy] = React.useState("popularity.desc");
-
-//   React.useEffect(() => {
-//     if (!isSearchMode) {
-//       loadFilteredMovies();
-//     }
-//   }, [currentPage, selectedGenre, sortBy, isSearchMode]);
-
-//   const loadFilteredMovies = async () => {
-//     try {
-//       setIsLoading(true);
-//       const params = new URLSearchParams({
-//         page: currentPage,
-//         sort_by: sortBy,
-//       });
-
-//       if (selectedGenre) {
-//         params.append("genre", selectedGenre);
-//       }
-
-//       const response = await fetch(`/api/movies?${params}`);
-//       if (!response.ok) throw new Error("Network response was not ok");
-//       const data = await response.json();
-//       setMovies(data.results);
-//       setTotalPages(data.total_pages);
-//     } catch (error) {
-//       console.error("Error loading filtered movies:", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   const loadPopularMovies = async () => {
-//     setSelectedGenre(""); // Resetear filtros
-//     setSortBy("popularity.desc");
-//     setCurrentPage(1);
-//     setIsSearchMode(false);
-//     setSearchQuery("");
-//     await loadFilteredMovies();
-//   };
-
-//   const handleSearch = async (query) => {
-//     setSearchQuery(query);
-//     if (query.length >= 3) {
-//       try {
-//         setIsLoading(true);
-//         const response = await fetch(
-//           `/api/movies/search?query=${encodeURIComponent(query)}`
-//         );
-//         if (!response.ok) throw new Error("Network response was not ok");
-//         const data = await response.json();
-//         setMovies(data);
-//         setIsSearchMode(true);
-//       } catch (error) {
-//         console.error("Error searching movies:", error);
-//       } finally {
-//         setIsLoading(false);
-//       }
-//     } else if (query.length === 0) {
-//       loadPopularMovies();
-//     }
-//   };
-
-//   const handleMovieClick = async (movieId) => {
-//     try {
-//       const response = await fetch(`/api/movies/${movieId}/recommendations`);
-//       if (!response.ok) throw new Error("Network response was not ok");
-//       const data = await response.json();
-//       setRecommendations(data);
-//       setShowRecommendations(true);
-//     } catch (error) {
-//       console.error("Error loading recommendations:", error);
-//     }
-//   };
-
-//   const handleGenreChange = (genre) => {
-//     setSelectedGenre(genre);
-//     setCurrentPage(1);
-//     setIsSearchMode(false);
-//   };
-
-//   const handleSortChange = (sortOption) => {
-//     setSortBy(sortOption);
-//     setCurrentPage(1);
-//     setIsSearchMode(false);
-//   };
-
-//   const handlePageChange = (page) => {
-//     setCurrentPage(page);
-//     window.scrollTo(0, 0);
-//   };
-
-//   return (
-//     <div className="container mx-auto px-4 py-8">
-//       <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
-//         Recomendador de Películas
-//       </h1>
-
-//       <SearchBar
-//         value={searchQuery}
-//         onChange={handleSearch}
-//         isLoading={isLoading}
-//       />
-
-//       {!isSearchMode && (
-//         <FiltersBar
-//           onFilterChange={handleGenreChange}
-//           onSortChange={handleSortChange}
-//           selectedGenre={selectedGenre}
-//           selectedSort={sortBy}
-//         />
-//       )}
-
-//       {isSearchMode && (
-//         <div className="text-center mb-8">
-//           <button
-//             onClick={loadPopularMovies}
-//             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-300"
-//           >
-//             Volver a Películas Populares
-//           </button>
-//         </div>
-//       )}
-
-//       {isLoading ? (
-//         <div className="flex justify-center items-center h-64">
-//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-//         </div>
-//       ) : (
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//           {movies.map((movie) => (
-//             <MovieCard
-//               key={movie.tmdb_id}
-//               movie={movie}
-//               onClick={() => handleMovieClick(movie.tmdb_id)}
-//             />
-//           ))}
-//         </div>
-//       )}
-
-//       {!isSearchMode && movies.length > 0 && (
-//         <Pagination
-//           currentPage={currentPage}
-//           totalPages={totalPages}
-//           onPageChange={handlePageChange}
-//         />
-//       )}
-
-//       <RecommendationsModal
-//         show={showRecommendations}
-//         recommendations={recommendations}
-//         onClose={() => setShowRecommendations(false)}
-//       />
-//     </div>
-//   );
-// }
-
-// ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 const genres = [
+  { id: "all", name: "Todos los géneros" },
   { id: 28, name: "Acción" },
   { id: 12, name: "Aventura" },
   { id: 16, name: "Animación" },
   { id: 35, name: "Comedia" },
   { id: 80, name: "Crimen" },
-  { id: 99, name: "Documental" },
+  // { id: 99, name: "Documental" },
   { id: 18, name: "Drama" },
   { id: 10751, name: "Familia" },
-  { id: 14, name: "Fantasía" },
-  { id: 36, name: "Historia" },
+  // { id: 14, name: "Fantasía" },
+  // { id: 36, name: "Historia" },
   { id: 27, name: "Terror" },
-  { id: 10402, name: "Música" },
-  { id: 9648, name: "Misterio" },
+  // { id: 10402, name: "Música" },
+  // { id: 9648, name: "Misterio" },
   { id: 10749, name: "Romance" },
   { id: 878, name: "Ciencia ficción" },
-  { id: 10770, name: "Película de TV" },
+  // { id: 10770, name: "Película de TV" },
   { id: 53, name: "Suspense" },
   { id: 10752, name: "Bélica" },
-  { id: 37, name: "Western" },
+  // { id: 37, name: "Western" },
 ];
 const sortOptions = [
   { value: "popularity.desc", label: "Más populares" },
@@ -205,8 +37,10 @@ function App() {
   const [recommendations, setRecommendations] = React.useState([]);
   const [isSearchMode, setIsSearchMode] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [selectedGenre, setSelectedGenre] = React.useState("");
+  const MOVIES_PER_PAGE = 8;
+  const [selectedGenre, setSelectedGenre] = React.useState("all");
   const [sortBy, setSortBy] = React.useState("popularity.desc");
+  const [featuredMovies, setFeaturedMovies] = React.useState([]);
 
   React.useEffect(() => {
     loadPopularMovies();
@@ -219,8 +53,10 @@ function App() {
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       setMovies(data);
+      setFeaturedMovies(data.slice(0, 4)); // ← 4 destacadas
       setIsSearchMode(false);
       setSearchQuery("");
+      setCurrentPage(1);
     } catch (error) {
       console.error("Error loading movies:", error);
     } finally {
@@ -240,6 +76,7 @@ function App() {
         const data = await response.json();
         setMovies(data);
         setIsSearchMode(true);
+        setCurrentPage(1);
       } catch (error) {
         console.error("Error searching movies:", error);
       } finally {
@@ -274,63 +111,121 @@ function App() {
     setCurrentPage(1);
     setIsSearchMode(false);
   };
-  React.useEffect(() => {
-    const allGenreIds = genres.map((genre) => genre.id);
-    console.log(allGenreIds, "voila");
-    setSelectedGenre(allGenreIds);
-  }, [movies]);
+  const filteredAndSortedMovies = React.useMemo(() => {
+    const filtered = movies.filter((movie) => {
+      if (selectedGenre === "all") return true;
+      return movie.genre_ids.some((id) => id === Number(selectedGenre));
+    });
+
+    const sorted = filtered.sort((a, b) => {
+      switch (sortBy) {
+        case "popularity.desc":
+          return b.popularity - a.popularity;
+        case "popularity.asc":
+          return a.popularity - b.popularity;
+        case "vote_average.desc":
+          return b.vote_average - a.vote_average;
+        case "vote_average.asc":
+          return a.vote_average - b.vote_average;
+        case "release_date.desc":
+          return new Date(b.release_date) - new Date(a.release_date);
+        case "release_date.asc":
+          return new Date(a.release_date) - new Date(b.release_date);
+        default:
+          return 0;
+      }
+    });
+
+    return sorted;
+  }, [movies, selectedGenre, sortBy]);
+
+  // Total de páginas = longitud del array filtrado/ordenado entre el número de items por página
+  const totalPages = Math.ceil(
+    filteredAndSortedMovies.length / MOVIES_PER_PAGE
+  );
+
+  // Saco las películas correspondientes a la página actual
+  const currentPageMovies = React.useMemo(() => {
+    const startIndex = (currentPage - 1) * MOVIES_PER_PAGE;
+    const endIndex = startIndex + MOVIES_PER_PAGE;
+    return filteredAndSortedMovies.slice(startIndex, endIndex);
+  }, [filteredAndSortedMovies, currentPage]);
+
+  // Manejador de cambio de página
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
-        Recomendador de Películas
-      </h1>
+    <div className="min-h-screen w-full bg-pink-100 flex flex-col">
+      <div className="flex-grow max-w-[1300px] mx-auto px-6 md:px-10 py-8">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 dark:text-white mb-10 tracking-tight">
+          🎬 Recomendador de Películas
+        </h1>
 
-      <SearchBar
-        value={searchQuery}
-        onChange={handleSearch}
-        isLoading={isLoading}
-      />
-
-      {isSearchMode && (
-        <div className="text-center mb-8">
-          <button
-            onClick={loadPopularMovies}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-300"
-          >
-            Volver a Películas Populares
-          </button>
-        </div>
-      )}
-      {!isSearchMode && (
-        <FiltersBar
-          onFilterChange={handleGenreChange}
-          onSortChange={handleSortChange}
-          selectedGenre={selectedGenre}
-          selectedSort={sortBy}
-          genres={genres}
-          sortOptions={sortOptions}
+        <SearchBar
+          value={searchQuery}
+          onChange={handleSearch}
+          isLoading={isLoading}
         />
-      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {movies
+        {!isSearchMode && (
+          <FeaturedMovies movies={featuredMovies} onClick={handleMovieClick} />
+        )}
+
+        {isSearchMode && (
+          <div className="text-center mb-8">
+            <button
+              onClick={loadPopularMovies}
+              className="inline-block bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+            >
+              🔄 Volver a Todas las Películas
+            </button>
+          </div>
+        )}
+        {!isSearchMode && (
+          <FiltersBar
+            onFilterChange={handleGenreChange}
+            onSortChange={handleSortChange}
+            selectedGenre={selectedGenre}
+            selectedSort={sortBy}
+            genres={genres}
+            sortOptions={sortOptions}
+          />
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* {movies
           .filter((el) =>
             el.genre_ids.some((genre) => genre == parseInt(selectedGenre))
-          )
-          .map((movie) => (
+          ) */}
+          {currentPageMovies.map((movie) => (
             <MovieCard
               key={movie.tmdb_id}
               movie={movie}
               onClick={() => handleMovieClick(movie.tmdb_id)}
             />
           ))}
-      </div>
+        </div>
 
-      <RecommendationsModal
-        show={showRecommendations}
-        recommendations={recommendations}
-        onClose={() => setShowRecommendations(false)}
-      />
+        {/* Componente de paginación */}
+        {totalPages > 1 && (
+          <div className="pt-12 pb-8">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
+
+        <RecommendationsModal
+          show={showRecommendations}
+          recommendations={recommendations}
+          onClose={() => setShowRecommendations(false)}
+        />
+      </div>
+      <AboutApp />
     </div>
   );
 }
