@@ -73,6 +73,7 @@ TMDB_API_KEY=tu_api_key_aqui
 ```
 👉 Podés conseguir tu API gratuita desde: https://www.themoviedb.org/settings/api
 ```
+```
 ### 5. Ejecutá el servidor Python
 
 ```bash
@@ -91,7 +92,7 @@ No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
 
 
 ## ⭐ ¿Te gustó este proyecto?
-## Si querés apoyar o dar visibilidad al trabajo:
+Si querés apoyar o dar visibilidad al trabajo:
 
 -⭐ Dale una estrella al repositorio
--📤 Compartilo con otros desarrolladores
+o 📤 Compartilo con otros desarrolladores
