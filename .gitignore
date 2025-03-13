@@ -8,3 +8,4 @@ __pycache__/
 virtualenv
 %USERPROFILE%
 install-pyenv-win
+node_modules

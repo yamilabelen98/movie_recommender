@@ -46,7 +46,7 @@ const RecommendationsModal = ({ show, recommendations, onClose }) => {
           </div>
         ) : (
           <div className="text-gray-600 text-lg">
-            No se encontraron películas similares.
+            😕 No se encontraron películas...
           </div>
         )}
       </div>
