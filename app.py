@@ -74,7 +74,7 @@ def get_popular_movies():
                 )
                 db.session.add(movie)
         db.session.commit()
-        movies = Movie.query.order_by(Movie.popularity.desc()).limit(200).all()
+        movies = Movie.query.order_by(Movie.vote_average.desc()).limit(200).all()
         return jsonify([m.to_dict() for m in movies])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -153,12 +153,15 @@ def get_movie_recommendations(movie_id):
 @login_required
 def get_movies():
     genre = request.args.get('genre')
-    sort_by = request.args.get('sort_by', 'popularity.desc')
+    sort_by = request.args.get('sort_by', 'vote_average.desc')
 
     query = Movie.query
-    if genre:
+
+    # Filtro por género
+    if genre and genre != "all":
         query = query.filter(Movie.genre_ids.like(f"%{genre}%"))
 
+    # Ordenamiento (solo por estrellas o fecha de estreno)
     if sort_by == 'vote_average.desc':
         query = query.order_by(Movie.vote_average.desc())
     elif sort_by == 'vote_average.asc':
@@ -168,10 +171,9 @@ def get_movies():
     elif sort_by == 'release_date.asc':
         query = query.order_by(Movie.release_date.asc())
     else:
-        query = query.order_by(Movie.popularity.desc())
+        query = query.order_by(Movie.vote_average.desc())  # Default por estrellas
 
     movies = query.all()
-    print(movies,"las movies")
     return jsonify([m.to_dict() for m in movies])
 
 if __name__ == '__main__':

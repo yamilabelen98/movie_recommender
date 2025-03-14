@@ -22,7 +22,8 @@ const AboutApp = () => {
           sesión.
         </li>
         <li>
-          👤 Sección de perfil de usuario con cambio y eliminación de cuenta.
+          👤 Sección de perfil de usuario con información y eliminación de
+          cuenta.
         </li>
         <li>🔐 Acceso restringido: no se puede navegar sin iniciar sesión.</li>
         <li>

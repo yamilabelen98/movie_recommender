@@ -1,29 +1,34 @@
 # 🎬 Recomendador de Películas - Full Stack App
 
-Este proyecto fue desarrollado para aumentar mis habilidades de desarrollo web Full Stack y aprender nuevas tecnologías.  
+Este proyecto fue desarrollado para **mejorar mis habilidades como desarrolladora Full Stack** y aprender nuevas tecnologías.  
 Permite buscar películas, filtrarlas por género, ordenarlas por popularidad o puntuación, y obtener recomendaciones personalizadas.
 
 ---
 
-## 📌 Características principales
+## ✨ Características principales
 
-✅ Buscador de películas  
-✅ Filtro por género  
-✅ Ordenamiento por popularidad, puntuación o fecha  
-✅ Modal con detalle de cada película  
-✅ Recomendaciones relacionadas  
-✅ Películas destacadas  
-✅ Diseño responsive con estilo pastel moderno
+- 🔍 **Búsqueda de películas** con filtros combinables por **género**, **orden** y **popularidad**.
+- 💡 **Sistema de login y logout** con validaciones visuales y mensajes claros.
+- 👁 **Mostrar/Ocultar contraseña** al registrarse o iniciar sesión.
+- 👤 **Perfil de usuario** con información personal y posibilidad de eliminar cuenta.
+- 🔐 **Acceso restringido**: no se puede navegar si no hay sesión iniciada.
+- 🎞 **Detalles completos de películas** + **recomendaciones similares** al hacer clic.
+- 📄 **Botón para regresar fácilmente** al listado completo de películas.
+- 📚 **Sistema de paginación** para facilitar la navegación.
+- ⭐ **Películas destacadas** con resumen visible.
+- 📱 **Diseño 100% responsive**, adaptado a todos los dispositivos.
 
 ---
 
-## 👩‍💻 Tecnologías utilizadas
+## 💻 Tecnologías utilizadas
 
-- ⚛ React
-- 🎨 TailwindCSS
-- 🐍 Python
-- 🚀 Flask / FastAPI
-- 🌐 HTML + Babel Standalone Runtime
+| Tecnología      | Descripción                               |
+| --------------- | ----------------------------------------- |
+| ⚛ React         | Frontend dinámico y moderno               |
+| 🎨 Tailwind CSS | Estilos rápidos, adaptables y visuales    |
+| 🐍 Python       | Lógica de backend eficiente               |
+| 🚀 Flask        | Framework web para el servidor            |
+| 🗃 SQLite        | Base de datos ligera y simple de integrar |
 
 ---
 
@@ -83,11 +88,10 @@ TMDB_API_KEY=tu_api_key_aqui
 python app.py
 ```
 
-### 6. Abrí el archivo index.html en tu navegador
+### 6. Acceder desde tu navegador
 
 ```bash
-Se encuentra en la raíz del proyecto.
-No necesitás compilar nada, solo asegurate de que el backend esté corriendo.
+http://localhost:5000
 ```
 
 ## 📫 Contacto

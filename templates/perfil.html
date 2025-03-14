@@ -11,6 +11,20 @@
   </head>
   <body class="bg-pink-100 min-h-screen flex items-center justify-center">
     <div class="bg-white rounded-xl shadow-md p-8 w-full max-w-md text-center">
+      <!-- 🔔 MENSAJES FLASH -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="mb-6">
+        {% for category, message in messages %}
+        <div
+          class="text-sm p-3 rounded-md text-white {% if category == 'danger' %} bg-red-500 {% elif category == 'warning' %} bg-yellow-500 {% elif category == 'info' %} bg-blue-500 {% else %} bg-green-500 {% endif %}"
+        >
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
       <h1 class="text-2xl font-bold text-gray-800 mb-4">
         👤 Perfil del Usuario
       </h1>
@@ -20,56 +34,23 @@
         <p><strong>Email:</strong> {{ user.email }}</p>
       </div>
 
-      <!-- <h3 class="text-lg font-semibold mt-6 mb-2">🔒 Cambiar contraseña</h3>
-      <form action="/auth/change-password" method="POST" class="space-y-3">
-        <input
-          type="password"
-          name="current_password"
-          placeholder="Contraseña actual"
-          class="w-full border px-3 py-2 rounded-md"
-          required
-        />
-
-        <input
-          type="password"
-          name="new_password"
-          placeholder="Nueva contraseña"
-          class="w-full border px-3 py-2 rounded-md"
-          required
-        />
-
-        <input
-          type="password"
-          name="confirm_password"
-          placeholder="Confirmar nueva contraseña"
-          class="w-full border px-3 py-2 rounded-md"
-          required
-        />
-
-        <button
-          type="submit"
-          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
-          Actualizar
-        </button>
-      </form>
-
-      <h3 class="text-lg font-semibold mt-6 mb-2 text-red-600">
-        🗑 Eliminar cuenta
-      </h3>
+      <!-- BOTÓN ELIMINAR CUENTA -->
       <form
         action="/auth/delete-account"
         method="POST"
-        onsubmit="return confirm('¿Estás seguro que querés eliminar tu cuenta? Esta acción no se puede deshacer.')"
+        onsubmit="return confirm('¿Seguro que querés eliminar tu cuenta? 😢 Esta acción es permanente. Si estás segur@, hacé clic en Aceptar.')"
       >
         <button
-          class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+          type="submit"
+          class="mt-6 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-xl transition duration-200"
         >
-          Eliminar mi cuenta
+          🗑️ Eliminar cuenta
         </button>
-      </form> -->
+      </form>
 
-      <a href="/" class="text-pink-600 hover:underline">← Volver al inicio</a>
+      <a href="/" class="block mt-6 text-pink-600 hover:underline"
+        >← Volver al inicio</a
+      >
     </div>
   </body>
 </html>

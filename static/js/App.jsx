@@ -5,20 +5,20 @@ const genres = [
   { id: 16, name: "Animación" },
   { id: 35, name: "Comedia" },
   { id: 80, name: "Crimen" },
-  // { id: 99, name: "Documental" },
+  { id: 99, name: "Documental" },
   { id: 18, name: "Drama" },
   { id: 10751, name: "Familia" },
-  // { id: 14, name: "Fantasía" },
-  // { id: 36, name: "Historia" },
+  { id: 14, name: "Fantasía" },
+  { id: 36, name: "Historia" },
   { id: 27, name: "Terror" },
-  // { id: 10402, name: "Música" },
-  // { id: 9648, name: "Misterio" },
+  { id: 10402, name: "Música" },
+  { id: 9648, name: "Misterio" },
   { id: 10749, name: "Romance" },
   { id: 878, name: "Ciencia ficción" },
-  // { id: 10770, name: "Película de TV" },
+  { id: 10770, name: "Película de TV" },
   { id: 53, name: "Suspense" },
   { id: 10752, name: "Bélica" },
-  // { id: 37, name: "Western" },
+  { id: 37, name: "Western" },
 ];
 const sortOptions = [
   { value: "vote_average.desc", label: "⭐ Más populares (más estrellas)" },
@@ -35,33 +35,21 @@ function App() {
   const [recommendations, setRecommendations] = React.useState([]);
   const [isSearchMode, setIsSearchMode] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const MOVIES_PER_PAGE = 8;
+  const MOVIES_PER_PAGE = 12;
   const [selectedGenre, setSelectedGenre] = React.useState("all");
-  const [sortBy, setSortBy] = React.useState("popularity.asc");
+  const [sortBy, setSortBy] = React.useState("popularity.desc");
   const [featuredMovies, setFeaturedMovies] = React.useState([]);
 
+  // 👉 Al iniciar, que use sortBy y selectedGenre directamente
   React.useEffect(() => {
-    loadPopularMovies();
+    fetchMoviesFromBackend(selectedGenre, sortBy);
   }, []);
 
   const loadPopularMovies = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch("/api/movies/popular");
-      if (!response.ok) throw new Error("Network response was not ok");
-      const data = await response.json();
-      console.log(data, "la response de load popular movies");
-
-      setMovies(data);
-      setFeaturedMovies(data.slice(0, 4)); // ← 4 destacadas
-      setIsSearchMode(false);
-      setSearchQuery("");
-      setCurrentPage(1);
-    } catch (error) {
-      console.error("Error loading movies:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    await fetchMoviesFromBackend(selectedGenre, sortBy);
+    setIsSearchMode(false);
+    setSearchQuery("");
+    setCurrentPage(1);
   };
 
   const handleSearch = async (query) => {
@@ -72,15 +60,12 @@ function App() {
         const response = await fetch(
           `/api/movies/search?query=${encodeURIComponent(query)}`
         );
-        if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
-        console.log(data, "la response de handleSearch movies");
-
         setMovies(data);
         setIsSearchMode(true);
         setCurrentPage(1);
       } catch (error) {
-        console.error("Error searching movies:", error);
+        console.error("Error al buscar películas:", error);
       } finally {
         setIsLoading(false);
       }
@@ -92,77 +77,74 @@ function App() {
   const handleMovieClick = async (movieId) => {
     try {
       const response = await fetch(`/api/movies/${movieId}/recommendations`);
-      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
-      console.log(data, "La data");
       setRecommendations(data);
       setShowRecommendations(true);
     } catch (error) {
-      console.error("Error loading recommendations:", error);
+      console.error("Error al obtener recomendaciones:", error);
     }
   };
 
-  const handleGenreChange = (genre) => {
+  const handleGenreChange = async (genre) => {
     setSelectedGenre(genre);
     setCurrentPage(1);
     setIsSearchMode(false);
+    await fetchMoviesFromBackend(genre, sortBy);
   };
 
-  const handleSortChange = (sortOption) => {
+  const handleSortChange = async (sortOption) => {
     setSortBy(sortOption);
     setCurrentPage(1);
     setIsSearchMode(false);
+    await fetchMoviesFromBackend(selectedGenre, sortOption);
   };
-  const filteredAndSortedMovies = React.useMemo(() => {
-    const filtered = movies.filter((movie) => {
-      if (selectedGenre === "all") return true;
-      return movie.genre_ids.some((id) => id === Number(selectedGenre));
-    });
 
-    const sorted = filtered.sort((a, b) => {
-      switch (sortBy) {
-        case "popularity.desc":
-          return b.popularity - a.popularity;
-        case "popularity.asc":
-          return a.popularity - b.popularity;
-        case "release_date.desc":
-          return new Date(b.release_date) - new Date(a.release_date);
-        case "release_date.asc":
-          return new Date(a.release_date) - new Date(b.release_date);
-        default:
-          return 0;
-      }
-    });
+  const fetchMoviesFromBackend = async (genre, sort) => {
+    try {
+      setIsLoading(true);
+      const params = new URLSearchParams();
+      if (genre && genre !== "all") params.append("genre", genre);
+      if (sort) params.append("sort_by", sort);
 
-    return sorted;
-  }, [movies, selectedGenre, sortBy]);
+      const response = await fetch(`/api/movies?${params.toString()}`);
+      const data = await response.json();
 
-  // Total de páginas = longitud del array filtrado/ordenado entre el número de items por página
-  const totalPages = Math.ceil(
-    filteredAndSortedMovies.length / MOVIES_PER_PAGE
-  );
+      setMovies(data);
 
-  // Saco las películas correspondientes a la página actual
+      // ✔ Destacadas directamente desde data
+      const sortedByStars = [...data].sort(
+        (a, b) => b.vote_average - a.vote_average
+      );
+      setFeaturedMovies(sortedByStars.slice(0, 4));
+    } catch (error) {
+      console.error("Error al cargar las películas:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const currentPageMovies = React.useMemo(() => {
-    const startIndex = (currentPage - 1) * MOVIES_PER_PAGE;
-    const endIndex = startIndex + MOVIES_PER_PAGE;
-    return filteredAndSortedMovies.slice(startIndex, endIndex);
-  }, [filteredAndSortedMovies, currentPage]);
+    console.log("Películas cargadas:", movies);
 
-  // Manejador de cambio de página
+    const start = (currentPage - 1) * MOVIES_PER_PAGE;
+    return movies.slice(start, start + MOVIES_PER_PAGE);
+  }, [movies, currentPage]);
+
+  const totalPages = Math.ceil(movies.length / MOVIES_PER_PAGE);
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-  React.useEffect(() => {
-    fetch("/auth/session")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.logged_in) {
-          console.log("Usuario logueado:", data.username);
-          // Mostrar en pantalla "Hola, {username}" o botón "Cerrar sesión"
-        }
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   fetch("/auth/session")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.logged_in) {
+  //         console.log("Usuario logueado:", data.username);
+  //         // Mostrar en pantalla "Hola, {username}" o botón "Cerrar sesión"
+  //       }
+  //     });
+  // }, []);
 
   return (
     <div className="min-h-screen w-full bg-pink-100 flex flex-col">
@@ -209,7 +191,7 @@ function App() {
           ) */}
           {currentPageMovies.map((movie) => (
             <MovieCard
-              key={movie.tmdb_id}
+              key={movie.tmdb_id || movie.id}
               movie={movie}
               onClick={() => handleMovieClick(movie.tmdb_id)}
             />
