@@ -21,12 +21,10 @@ const genres = [
   // { id: 37, name: "Western" },
 ];
 const sortOptions = [
-  { value: "popularity.desc", label: "Más populares" },
-  { value: "popularity.asc", label: "Menos populares" },
-  { value: "vote_average.desc", label: "Mejor valoradas" },
-  { value: "vote_average.asc", label: "Peor valoradas" },
-  { value: "release_date.desc", label: "Más recientes" },
-  { value: "release_date.asc", label: "Más antiguas" },
+  { value: "vote_average.desc", label: "⭐ Más populares (más estrellas)" },
+  { value: "vote_average.asc", label: "⭐ Menos populares (menos estrellas)" },
+  { value: "release_date.desc", label: "🕓 Más recientes (más nuevas)" },
+  { value: "release_date.asc", label: "🕓 Más antiguas" },
 ];
 
 function App() {
@@ -39,7 +37,7 @@ function App() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const MOVIES_PER_PAGE = 8;
   const [selectedGenre, setSelectedGenre] = React.useState("all");
-  const [sortBy, setSortBy] = React.useState("popularity.desc");
+  const [sortBy, setSortBy] = React.useState("popularity.asc");
   const [featuredMovies, setFeaturedMovies] = React.useState([]);
 
   React.useEffect(() => {
@@ -52,6 +50,8 @@ function App() {
       const response = await fetch("/api/movies/popular");
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
+      console.log(data, "la response de load popular movies");
+
       setMovies(data);
       setFeaturedMovies(data.slice(0, 4)); // ← 4 destacadas
       setIsSearchMode(false);
@@ -74,6 +74,8 @@ function App() {
         );
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
+        console.log(data, "la response de handleSearch movies");
+
         setMovies(data);
         setIsSearchMode(true);
         setCurrentPage(1);
@@ -123,10 +125,6 @@ function App() {
           return b.popularity - a.popularity;
         case "popularity.asc":
           return a.popularity - b.popularity;
-        case "vote_average.desc":
-          return b.vote_average - a.vote_average;
-        case "vote_average.asc":
-          return a.vote_average - b.vote_average;
         case "release_date.desc":
           return new Date(b.release_date) - new Date(a.release_date);
         case "release_date.asc":
@@ -155,6 +153,16 @@ function App() {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
+  React.useEffect(() => {
+    fetch("/auth/session")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.logged_in) {
+          console.log("Usuario logueado:", data.username);
+          // Mostrar en pantalla "Hola, {username}" o botón "Cerrar sesión"
+        }
+      });
+  }, []);
 
   return (
     <div className="min-h-screen w-full bg-pink-100 flex flex-col">

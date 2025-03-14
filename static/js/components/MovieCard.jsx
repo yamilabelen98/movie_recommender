@@ -55,24 +55,15 @@ const MovieCard = ({ movie, onClick }) => {
           >
             {movie.title}
           </h2>
-          <div
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 1,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-            className="flex items-center mb-2"
-          >
-            <span className="text-yellow-500">⭐</span>
-            <span className="text-gray-600 ml-1">
-              {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
-            </span>
-            <span className="text-gray-400 text-sm ml-2">
-              ({movie.vote_count} votos)
+          <div className="flex flex-col mb-2 text-sm text-gray-600">
+            <span>⭐ Promedio: {movie.vote_average.toFixed(1)}</span>
+            <span>🗳 Votos: {movie.vote_count}</span>
+            <span>
+              📅 Año:{" "}
+              {movie.release_date ? movie.release_date.slice(0, 4) : "-"}
             </span>
           </div>
+
           <div className="text-gray-600 text-sm">
             <p
               style={{

@@ -9,3 +9,4 @@ virtualenv
 %USERPROFILE%
 install-pyenv-win
 node_modules
+venv

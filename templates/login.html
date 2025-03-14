@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-pink-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-xl shadow-md p-8 w-full max-w-md">
+      <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">
+        🔐 Iniciar sesión
+      </h2>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="mb-4">
+        {% for category, message in messages %}
+        <div
+          class="text-sm text-white px-4 py-2 rounded-md mb-2 {% if category == 'success' %}bg-green-500{% elif category == 'danger' %}bg-red-500{% elif category == 'warning' %}bg-yellow-400 text-black{% endif %}"
+        >
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
+      <form method="POST" class="space-y-4" onsubmit="return validarLogin();">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-pink-400 focus:outline-none"
+            oninput="validarEmailLogin()"
+          />
+          <p id="error-email" class="text-sm text-red-500 mt-1 hidden"></p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-pink-400 focus:outline-none"
+            autocomplete="current-password"
+            oninput="validarPasswordLogin()"
+          />
+          <button
+            type="button"
+            id="toggle-password"
+            class="text-sm text-blue-600 mt-1"
+          >
+            👁 Mostrar
+          </button>
+          <p id="error-password" class="text-sm text-red-500 mt-1 hidden"></p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition"
+        >
+          Iniciar sesión
+        </button>
+      </form>
+
+      <p class="text-center mt-4 text-sm text-gray-600">
+        ¿No tenés cuenta?
+        <a href="/auth/register" class="text-pink-600 hover:underline"
+          >Registrate acá</a
+        >
+      </p>
+    </div>
+
+    <script>
+      function validarEmailLogin() {
+        const email = document.getElementById("email").value.trim();
+        const errorEmail = document.getElementById("error-email");
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!regex.test(email)) {
+          errorEmail.textContent = "Ingresá un email válido.";
+          errorEmail.classList.remove("hidden");
+          return false;
+        } else {
+          errorEmail.classList.add("hidden");
+          return true;
+        }
+      }
+
+      function validarPasswordLogin() {
+        const password = document.getElementById("password").value;
+        const errorPassword = document.getElementById("error-password");
+
+        if (password.length < 6) {
+          errorPassword.textContent =
+            "La contraseña debe tener al menos 6 caracteres.";
+          errorPassword.classList.remove("hidden");
+          return false;
+        } else {
+          errorPassword.classList.add("hidden");
+          return true;
+        }
+      }
+
+      function validarLogin() {
+        const validEmail = validarEmailLogin();
+        const validPassword = validarPasswordLogin();
+
+        return validEmail && validPassword;
+      }
+    </script>
+    <script>
+      const togglePassword = (inputId, toggleId) => {
+        const input = document.getElementById(inputId);
+        const toggle = document.getElementById(toggleId);
+
+        toggle.addEventListener("click", () => {
+          input.type = input.type === "password" ? "text" : "password";
+          toggle.textContent =
+            input.type === "password" ? "👁 Mostrar" : "🙈 Ocultar";
+        });
+      };
+
+      togglePassword("password", "toggle-password");
+    </script>
+  </body>
+</html>

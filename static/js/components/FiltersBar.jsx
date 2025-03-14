@@ -12,11 +12,7 @@ const FiltersBar = ({ onFilterChange, onSortChange, genres, sortOptions }) => {
             className="w-full cursor-pointer rounded-xl border border-gray-300 bg-pink-50 text-gray-700 text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition duration-200"
           >
             {genres.map((genre) => (
-              <option
-                key={genre.id}
-                value={genre.id}
-                className="cursor-pointer"
-              >
+              <option key={genre.id} value={genre.id}>
                 {genre.name}
               </option>
             ))}
@@ -29,16 +25,12 @@ const FiltersBar = ({ onFilterChange, onSortChange, genres, sortOptions }) => {
             🔽 Ordenar por
           </label>
           <select
-            onChange={(e) => onFilterChange(e.target.value)}
+            onChange={(e) => onSortChange(e.target.value)}
             className="w-full cursor-pointer rounded-xl border border-gray-300 bg-pink-50 text-gray-700 text-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition duration-200"
           >
-            {genres.map((genre) => (
-              <option
-                key={genre.id}
-                value={genre.id}
-                className="cursor-pointer"
-              >
-                {genre.name}
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
               </option>
             ))}
           </select>
