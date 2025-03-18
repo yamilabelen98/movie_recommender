@@ -34,17 +34,17 @@ Permite buscar películas, filtrarlas por género, ordenarlas por popularidad o 
 
 ## 🖼 Capturas del proyecto
 
-| Vista Principal                                                       | Detalle de Película                                      |
-| --------------------------------------------------------------------- | -------------------------------------------------------- |
-| ![Vista Principal](./static/images/Recomendador%20de%20Peliculas.png) | ![Detalle](./static/images/Detalle%20de%20la%20Card.png) |
+| Vista Principal                                                               | Detalle de Película                                              |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| ![Vista Principal](./backend/static/images/Recomendador%20de%20Peliculas.png) | ![Detalle](./backend/static/images/Detalle%20de%20la%20Card.png) |
 
-| Filtros y Ordenamiento                  | Recomendaciones                                               |
-| --------------------------------------- | ------------------------------------------------------------- |
-| ![Filtros](./static/images/Filtros.png) | ![Recomendaciones](./static/images/Peliculas%20similares.png) |
+| Filtros y Ordenamiento                          | Recomendaciones                                                       |
+| ----------------------------------------------- | --------------------------------------------------------------------- |
+| ![Filtros](./backend/static/images/Filtros.png) | ![Recomendaciones](./backend/static/images/Peliculas%20similares.png) |
 
-| Buscador y Volver                                                   | Footer + Sobre la App                                                 |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| ![Buscador](./static/images/Buscador%20y%20boton%20de%20volver.png) | ![Sobre la App](./static/images/Sobre%20la%20pagina%20y%20Footer.png) |
+| Buscador y Volver                                                           | Footer + Sobre la App                                                         |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| ![Buscador](./backend/static/images/Buscador%20y%20boton%20de%20volver.png) | ![Sobre la App](./backend/static/images/Sobre%20la%20pagina%20y%20Footer.png) |
 
 ---
 
@@ -85,7 +85,7 @@ TMDB_API_KEY=tu_api_key_aqui
 ### 5. Ejecutá el servidor Python
 
 ```bash
-python app.py
+python backend/app.py
 ```
 
 ### 6. Acceder desde tu navegador
