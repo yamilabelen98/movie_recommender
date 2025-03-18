@@ -62,6 +62,7 @@ function App() {
         );
         const data = await response.json();
         setMovies(data);
+        console.log("🎥 Películas en estado:", data);
         setIsSearchMode(true);
         setCurrentPage(1);
       } catch (error) {
@@ -108,6 +109,7 @@ function App() {
 
       const response = await fetch(`/api/movies?${params.toString()}`);
       const data = await response.json();
+      console.log("🔍 Respuesta del backend:", data);
 
       setMovies(data);
 
@@ -135,16 +137,6 @@ function App() {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-  // React.useEffect(() => {
-  //   fetch("/auth/session")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.logged_in) {
-  //         console.log("Usuario logueado:", data.username);
-  //         // Mostrar en pantalla "Hola, {username}" o botón "Cerrar sesión"
-  //       }
-  //     });
-  // }, []);
 
   return (
     <div className="min-h-screen w-full bg-pink-100 flex flex-col">
