@@ -7,6 +7,7 @@ requests==2.26.0
 Werkzeug==2.0.3
 types-Flask-SQLAlchemy
 types-SQLAlchemy
+gunicorn==20.1.0
 
 # Solo para desarrollo y testing (podés mantener o quitar)
 pytest==6.2.5
