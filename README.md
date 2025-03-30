@@ -2,7 +2,8 @@
 
 Este proyecto fue desarrollado para **mejorar mis habilidades como desarrolladora Full Stack** y aprender nuevas tecnologías.  
 Permite buscar películas, filtrarlas por género, ordenarlas por popularidad o puntuación, y obtener recomendaciones personalizadas.
-
+Pueden interactuar en mi app:
+https://movie-recommender-qc0n.onrender.com/
 ---
 
 ## ✨ Características principales
