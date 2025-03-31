@@ -47,17 +47,21 @@
     <!-- Contenedor principal -->
     <!-- Navbar con estado de sesión -->
     <nav
-      class="bg-white text-gray-800 shadow-md px-6 py-4 flex justify-between items-center"
+      class="bg-white text-gray-800 shadow-md px-6 py-4 flex justify-between items-center flex-grow w-full gap-2"
     >
-      <div class="text-xl font-bold">🎬 Recomendador</div>
+      <div class="text-md sm:text-xl font-bold self-start md:self-center">
+        🎬 Recomendador
+      </div>
 
       <div id="user-section" class="flex items-center gap-4 text-sm">
         <!-- Se reemplaza dinámicamente con JS -->
       </div>
     </nav>
 
-    <main class="flex-grow">
-      <div class="max-w-[1300px] mx-auto px-6 md:px-10 py-8">
+    <main class="flex-grow flex flex-col">
+      <div
+        class="flex flex-col flex-grow w-full max-w-[1300px] mx-auto px-6 md:px-10 py-8"
+      >
         <!-- 🔒 Mostrar contenido dinámicamente -->
         <div
           id="auth-warning"
@@ -126,9 +130,11 @@
 
           if (data.logged_in) {
             userSection.innerHTML = `
-              👋 <span class="font-semibold text-gray-700">Hola, ${data.username}</span>
-              <a href="/perfil" class="text-sm bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600">Perfil</a>
-              <a href="/auth/logout" class="text-sm bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">Cerrar sesión</a>
+               <span class="font-semibold self-start text-gray-700 text-sm lg:text-xl hidden md:block">👋 Hola, ${data.username}</span>
+              <div class="flex flex-col items-center gap-2">
+              <a href="/perfil" class="text-sm w-full text-center bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600">Perfil</a>
+              <a href="/auth/logout" class="text-sm w-full text-center bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">Cerrar sesión</a>
+              </div>
             `;
             rootContent.classList.remove("hidden");
             authWarning.classList.add("hidden");

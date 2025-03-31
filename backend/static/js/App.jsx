@@ -139,8 +139,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-pink-100 flex flex-col">
-      <div className="flex-grow max-w-[1300px] mx-auto px-6 md:px-10 py-8">
+    <div className="min-h-screen w-full bg-pink-100 flex flex-col flex-grow">
+      <div className="flex-grow w-full flex flex-col max-w-[1300px] mx-auto md:px-10 py-8">
         <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 dark:text-white mb-10 tracking-tight">
           🎬 Recomendador de Películas
         </h1>
@@ -192,7 +192,7 @@ function App() {
 
         {/* Componente de paginación */}
         {totalPages > 1 && (
-          <div className="pt-12 pb-8">
+          <div className="pt-12 pb-8 flex justify-center items-center">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

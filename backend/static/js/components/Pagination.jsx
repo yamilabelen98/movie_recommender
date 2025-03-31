@@ -1,6 +1,6 @@
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const maxButtons = 5;
   const pages = [];
+  const maxButtons = 5;
 
   let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
   let endPage = Math.min(totalPages, startPage + maxButtons - 1);
@@ -41,48 +41,56 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         </svg>
       </button>
 
-      {/* Botón página 1 y puntos */}
-      {startPage > 1 && (
-        <>
-          <button
-            onClick={() => onPageChange(1)}
-            className="px-3 py-1 rounded-md bg-white hover:bg-pink-100 text-gray-700 transition duration-200"
-          >
-            1
-          </button>
-          {startPage > 2 && <span className="px-2 text-gray-500">...</span>}
-        </>
-      )}
+      {/* Botón página 1 y puntos - Oculto en móvil */}
+      <div className="hidden md:flex items-center">
+        {startPage > 1 && (
+          <>
+            <button
+              onClick={() => onPageChange(1)}
+              className="px-3 py-1 rounded-md bg-white hover:bg-pink-100 text-gray-700 transition duration-200"
+            >
+              1
+            </button>
+            {startPage > 2 && <span className="px-2 text-gray-500">...</span>}
+          </>
+        )}
+      </div>
 
       {/* Botones de páginas */}
-      {pages.map((page) => (
-        <button
-          key={page}
-          onClick={() => onPageChange(page)}
-          className={`px-3 py-1 rounded-md transition duration-200 ${
-            currentPage === page
-              ? "bg-pink-500 text-white font-semibold"
-              : "bg-white hover:bg-pink-100 text-gray-700"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
-
-      {/* Puntos y última página */}
-      {endPage < totalPages && (
-        <>
-          {endPage < totalPages - 1 && (
-            <span className="px-2 text-gray-500">...</span>
-          )}
+      <div className="flex items-center gap-2">
+        {pages.map((page, index) => (
           <button
-            onClick={() => onPageChange(totalPages)}
-            className="px-3 py-1 rounded-md bg-white hover:bg-pink-100 text-gray-700 transition duration-200"
+            key={page}
+            onClick={() => onPageChange(page)}
+            className={`px-3 py-1 rounded-md transition duration-200 md:block ${
+              index < 3 ? "block" : "hidden"
+            } ${
+              currentPage === page
+                ? "bg-pink-500 text-white font-semibold"
+                : "bg-white hover:bg-pink-100 text-gray-700"
+            }`}
           >
-            {totalPages}
+            {page}
           </button>
-        </>
-      )}
+        ))}
+      </div>
+
+      {/* Puntos y última página - Oculto en móvil */}
+      <div className="flex items-center">
+        {endPage < totalPages && (
+          <>
+            {endPage < totalPages - 1 && (
+              <span className="px-2 text-gray-500">...</span>
+            )}
+            <button
+              onClick={() => onPageChange(totalPages)}
+              className="px-3 py-1 rounded-md bg-white hover:bg-pink-100 text-gray-700 transition duration-200"
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
+      </div>
 
       {/* Flecha derecha */}
       <button

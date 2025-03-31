@@ -1,5 +1,5 @@
 const SearchBar = ({ value, onChange, isLoading }) => (
-  <div className="max-w-2xl mx-auto mb-10">
+  <div className="max-w-2xl mx-auto mb-10 w-full">
     <div className="relative">
       <input
         type="text"
